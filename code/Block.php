@@ -40,7 +40,6 @@ class Block extends DataObject {
 	}
 	
 	public function shownOn() {
-		$lists = '';
 		if ($this->showBlockbyClass) {
 			if (strlen(trim($this->shownInClass)) > 0) {
 				$lists = 'Type: ' . str_replace(',','<br />Type: ', $this->shownInClass);
