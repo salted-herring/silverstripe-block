@@ -1,0 +1,12 @@
+---
+Name: 'blockextensions'
+---
+Block:
+#  extensions:
+#    - Versioned("Stage","Live")
+Page:
+  extensions:
+    - BlockinPage
+ContentController:
+#  extensions:
+#    - PrintBlocks
