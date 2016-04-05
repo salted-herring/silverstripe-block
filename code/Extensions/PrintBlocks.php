@@ -2,31 +2,29 @@
 class PrintBlocks extends Extension {
 	
 	public function getAllBlocks() {
-		$blocks = Block::get();
-		foreach ($blocks as $block) {
-			if ($block->forTemplate() === false) {
-				$blocks->exclude(array('ID' => $block->ID));
-			}
-		}
+		/*$blocksIDs = $this->getMyBlocks()->column('ID');
+		$blocks = Block::get()->filter('ID', $blocksIDs);
+		$docked = $this->getDockedBlocks();*/
+		$blocks = new ArrayList();
+		$blocks->merge($this->getMyBlocks());
+		$blocks->merge($this->getDockedBlocks());
 		return $blocks;
 	}
 		
 	public function getMyBlocks() {
-		$mySegment = ltrim($this->owner->Link(), '/' );
-		$mySegment = rtrim($mySegment, '/');
-		$mySegment = strlen($mySegment) == 0 || $mySegment == 'home' ? '<home>' : $mySegment;
-		$blocks = Block::get()->filter(array(
-			'ExcludeListed'		=>	false,
-			'UrlsRegExps'		=>	$mySegment
-		))->sort('SortOrder', 'ASC');
-		
-		return $blocks;
+		return $this->owner->Blocks()->sort('SortOrder', 'ASC');
 	}
 	
-	public function getGivenBlocks() {
-		$blocks = $this->getAllBlocks();
-		$myBlocksID = $this->getMyBlocks()->column('ID');
+	public function getDockedBlocks() {
+		$blocks = Block::get()->filter('showBlockbyClass', true);
+		$blocks_map = $blocks->map('ID', 'shownInClass');
+		foreach ($blocks_map as $blockID => $Classes) {
+			$Classes = explode(',', $Classes);
+			if (!in_array($this->owner->ClassName, $Classes)) {
+				$blocks = $blocks->exclude('ID', $blockID);
+			}
+		}
 		
-		return $blocks->exclude(array('ID' => $myBlocksID));
+		return $blocks->sort('SortOrder', 'ASC');
 	}
 }

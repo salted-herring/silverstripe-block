@@ -8,5 +8,5 @@ Page:
   extensions:
     - BlockinPage
 ContentController:
-#  extensions:
-#    - PrintBlocks
+  extensions:
+    - PrintBlocks

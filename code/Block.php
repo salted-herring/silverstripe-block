@@ -31,7 +31,8 @@ class Block extends DataObject {
 	);
 	
 	protected static $field_labels = array(
-		'shownOn'				=>	'is shown on'
+		'BlockType'			=>	'Block type',
+		'shownOn'			=>	'is shown on'
 	);
 	
 	public function BlockType() {
@@ -153,27 +154,10 @@ class Block extends DataObject {
 	}
 	
 	public function forTemplate() {
-		if (!empty(trim($this->shownInClass))) {
-			if ($this->canDisplayMemberCheck() && $this->canDisplayURLCheck() && $this->canDisplayClassCheck()) {
-				return $this->renderWith(array($this->getClassName(), 'BaseBlock'));
-			}
-		}else{
-			if ($this->canDisplayMemberCheck() && $this->canDisplayURLCheck()) {
-				return $this->renderWith(array($this->getClassName(), 'BaseBlock'));
-			}
+		if ($this->canDisplayMemberCheck()) {
+			return $this->renderWith(array($this->getClassName(), 'BaseBlock'));
 		}
 		
-		return false;
-	}
-	
-	private function canDisplayClassCheck() {
-		$ClassName = Controller::curr()->ClassName;
-		$Classes = explode(',', $this->shownInClass);
-		
-		if (in_array($ClassName, $Classes)) {
-			
-			return true;
-		}
 		return false;
 	}
 	
@@ -204,11 +188,7 @@ class Block extends DataObject {
 	}
 	
 	public function frontendEditable() {
-		return true;
-	}
-	
-	public function curLink() {
-		$URI = $_SERVER['REQUEST_URI'];
-		return rtrim(ltrim($URI, '/'), '/');
+		$member = Member::currentUser();		
+		return $this->canEdit($member);
 	}
 }

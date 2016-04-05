@@ -1,4 +1,3 @@
-$curLink
 <div id="block-$ID" class="block group"<% if $frontendEditable %> style="position: relative;"<% end_if %>>
 	<% if not $hideTitle %>
 	<h2 class="block-title"><span>$Title</span></h2>
