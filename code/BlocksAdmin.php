@@ -11,12 +11,7 @@ class BlocksAdmin extends ModelAdmin {
 	private static $menu_title = 'Blocks';
 	private static $menu_priority = 10;
 	private static $menu_icon = 'silverstripe-block/images/icon-block.png';
-	
-	public function init() {
-		parent::init();
-		//Requirements::javascript("silverstripe-block/js/silverstripe-block.script.js");
-	}
-	
+		
 	public function getEditForm($id = null, $fields = null) {
 		$form = parent::getEditForm($id, $fields);
 		
