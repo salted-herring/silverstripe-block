@@ -27,20 +27,29 @@ class Block extends DataObject {
 		'BlockType',
 		'Title', 
 		'Description',
-		'onPage'
+		'shownOn'
 	);
 	
 	protected static $field_labels = array(
-		'onPage'				=>	'on page(s)'
+		'shownOn'				=>	'is shown on'
 	);
 	
 	public function BlockType() {
 		return $this->singular_name();
 	}
 	
-	public function onPage() {
-		$urls = nl2br(htmlspecialchars($this->UrlsRegExps));
-		return new LiteralField('onpage',$urls);
+	public function shownOn() {
+		$lists = '';
+		if ($this->showBlockbyClass) {
+			if (strlen(trim($this->shownInClass)) > 0) {
+				$lists = 'Type: ' . str_replace(',','<br />Type: ', $this->shownInClass);
+			}else{
+				$lists = '<em>&lt;not assigned&gt;</em>';
+			}
+		}else{
+			$lists = 'Page: ' . implode('<br />Page: ', $this->Pages()->column('Title'));
+		}
+		return new LiteralField('shownOn',$lists);
 	}
 	
 	
