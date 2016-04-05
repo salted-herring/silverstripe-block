@@ -2,9 +2,6 @@
 class PrintBlocks extends Extension {
 	
 	public function getAllBlocks() {
-		/*$blocksIDs = $this->getMyBlocks()->column('ID');
-		$blocks = Block::get()->filter('ID', $blocksIDs);
-		$docked = $this->getDockedBlocks();*/
 		$blocks = new ArrayList();
 		$blocks->merge($this->getMyBlocks());
 		$blocks->merge($this->getDockedBlocks());

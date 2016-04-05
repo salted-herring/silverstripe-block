@@ -118,38 +118,12 @@ class Block extends DataObject {
 	}
 	
 	private function availableClasses() {
-		/*$Classes = array_diff(
-			ClassInfo::subclassesFor('DataObject'), 
-			ClassInfo::subclassesFor('Block'), 
-			ClassInfo::subclassesFor('File'),
-			ClassInfo::subclassesFor('LoginAttempt'),
-			ClassInfo::subclassesFor('Group'),
-			ClassInfo::subclassesFor('Member'),
-			ClassInfo::subclassesFor('MemberPassword'),
-			ClassInfo::subclassesFor('Permission'),
-			ClassInfo::subclassesFor('PermissionRole'),
-			ClassInfo::subclassesFor('PermissionRoleCode'),
-			ClassInfo::subclassesFor('LoginAttempt'),
-			ClassInfo::subclassesFor('ErrorPage'),
-			ClassInfo::subclassesFor('RedirectorPage'),
-			ClassInfo::subclassesFor('VirtualPage'),
-			ClassInfo::subclassesFor('LeftAndMainTest_Object'),
-			ClassInfo::subclassesFor('ModelAdminTest_Contact'),
-			ClassInfo::subclassesFor('ModelAdminTest_Player'),
-			ClassInfo::subclassesFor('SiteConfig')
-		);
-		
-		unset($Classes['DataObject']);
-		unset($Classes['SiteTree']);*/
-		
 		$Classes = array_diff(
 			ClassInfo::subclassesFor('Page'),
 			ClassInfo::subclassesFor('ErrorPage'),
 			ClassInfo::subclassesFor('RedirectorPage'),
 			ClassInfo::subclassesFor('VirtualPage')
 		);
-		
-		
 		return $Classes;
 	}
 	
