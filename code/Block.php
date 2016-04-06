@@ -164,4 +164,8 @@ class Block extends DataObject {
 		$member = Member::currentUser();		
 		return $this->canEdit($member);
 	}
+	
+	public function Type2Class() {
+		return strtolower(str_replace(' ', '-', $this->singular_name()));
+	}
 }
