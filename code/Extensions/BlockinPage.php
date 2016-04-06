@@ -1,23 +1,25 @@
 <?php
 class BlockinPage extends Extension {
-	
 	protected static $belongs_many_many = array (
 		'Blocks'			=>	'Block'
 	);
 	
 	public function updateCMSFields( FieldList $fields ) {
-		$blocks = $this->owner->Blocks();
-		if ($blocks->count() > 0) {
-			$blocks = Block::get()->filter(array(
-				'ID'				=>	$blocks->column('ID'),
-				'showBlockbyClass'	=>	false
-			))->sort('SortOrder','ASC');
+		$ancestry = ClassInfo::ancestry($this->owner->ClassName);
+		if (!in_array('RedirectorPage', $ancestry) && !in_array('VirtualPage', $ancestry)) {
+			$blocks = $this->owner->Blocks();
+			if ($blocks->count() > 0) {
+				$blocks = Block::get()->filter(array(
+					'ID'				=>	$blocks->column('ID'),
+					'showBlockbyClass'	=>	false
+				))->sort('SortOrder','ASC');
+			}
+			$blocks_grid = $this->gridBuilder('Blocks', $blocks, '', true,'GridFieldConfig_RelationEditor');
+			$docked_grid = $this->gridBuilder('DockedBlocks', $this->dockedBlocks(), '');
+			
+			$fields->addFieldToTab('Root.MyBlocks', $blocks_grid);
+			$fields->addFieldToTab('Root.DockedBlocks', $docked_grid);
 		}
-		$blocks_grid = $this->gridBuilder('Blocks', $blocks, '', true,'GridFieldConfig_RelationEditor');
-		$docked_grid = $this->gridBuilder('DockedBlocks', $this->dockedBlocks(), '');
-		
-		$fields->addFieldToTab('Root.MyBlocks', $blocks_grid);
-		$fields->addFieldToTab('Root.DockedBlocks', $docked_grid);
 	}
 	
 	private function gridBuilder($name, $source, $label = '', $canAdd = false, $gridHeaderType = 'GridFieldConfig_RecordEditor') {
