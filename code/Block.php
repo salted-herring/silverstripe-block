@@ -119,7 +119,6 @@ class Block extends DataObject {
 	private function availableClasses() {
 		$Classes = array_diff(
 			ClassInfo::subclassesFor('Page'),
-			ClassInfo::subclassesFor('ErrorPage'),
 			ClassInfo::subclassesFor('RedirectorPage'),
 			ClassInfo::subclassesFor('VirtualPage')
 		);
