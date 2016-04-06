@@ -44,7 +44,7 @@ class BlockinPage extends Extension {
 		return $grid;
 	}
 		
-	private function dockedBlocks($baseOn = 'Class') {
+	private function dockedBlocks() {
 		$blocks = Block::get();
 		$IDs = array();
 		$ClassName = $this->owner->ClassName;
