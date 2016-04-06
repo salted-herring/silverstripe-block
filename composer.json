@@ -1,0 +1,20 @@
+{
+	"name": "salted-herring/silverstripe-block",
+	"description": "Combining Silverstripe's awesomeness and Drupal's block feature",
+	"type": "silverstripe-module",
+
+	"homepage": "https://github.com/salted-herring/silverstripe-block",
+	"license": "MIT",
+	"keywords": ["silverstripe", "block"],
+	"authors": [
+		{
+			"name": "Salted Herring",
+			"homepage": "http://saltedherring.com"
+		}
+	],
+	"require": {
+		"silverstripe/framework": "~3.3",
+		"silverstripe/cms": "~3.3",
+		"salted-herring/silverstripe-standard-permissions": "^1.0"
+	}
+}
