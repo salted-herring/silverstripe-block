@@ -4,6 +4,7 @@ class Block extends DataObject {
 	protected static $db = array (
 		'SortOrder'			=>	'Int',
 		'Title'				=>	'Varchar(64)',
+		'TitleWrapper'		=>	'Enum("h2,h3,h4,h5,h6")',
 		'hideTitle'			=>	'Boolean',
 		'showBlockbyClass'	=>	'Boolean',
 		'Description'		=>	'Varchar(128)',

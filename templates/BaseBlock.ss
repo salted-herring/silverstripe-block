@@ -1,6 +1,10 @@
 <div id="block-$ID" class="block block-{$Type2Class} group"<% if $frontendEditable %> style="position: relative;"<% end_if %>>
 	<% if not $hideTitle %>
-	<h2 class="block-title"><span>$Title</span></h2>
+		<% if $TitleWrapper %>
+			<{$TitleWrapper} class="block-title"><span>$Title</span></{$TitleWrapper}>
+		<% else %>
+			<h2 class="block-title"><span>$Title</span></h2>
+		<% end_if %>
 	<% end_if %>
 	$Layout
 	<% if $frontendEditable %>
