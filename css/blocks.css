@@ -1,0 +1,56 @@
+.block:after,
+.block-content:after {
+	content: '';
+	display: table;
+	clear: both;
+	height: 0;
+	overflow: hidden;
+}
+
+.block.edit-mode {
+	position: relative;
+}
+
+.block.edit-mode:hover {
+	outline-style: dashed;
+	outline-color: #666;
+	outline-width: 1px;
+}
+
+.block.edit-mode .frontend-block-edit-wrapper {
+	display: none;
+}
+
+.block.edit-mode:hover .frontend-block-edit-wrapper {
+	display: block;
+}
+
+.block.edit-mode .frontend-block-edit-wrapper .block-edit-button {
+	font-size: 12px;
+	text-decoration: none;
+	display: block;
+	padding: 0.5em 1em;
+	background-color: rgba(255,255,255,0.8);
+	color: #333;
+}
+
+.block-content .col {
+	float: left;
+}
+
+.block-content .left-col {
+	margin-right: 10px;
+}
+
+.block-content .right-col {
+	margin-left: 10px;
+}
+
+.block-dual-column-block .block-content .col {
+	width: calc(50% - 10px);
+}
+
+.block-tri-column-block .block-content .col {
+	width: calc((100% - 20px) / 3);
+}
+

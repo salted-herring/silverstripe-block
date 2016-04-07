@@ -1,4 +1,4 @@
-<div id="block-$ID" class="block block-{$Type2Class} group"<% if $frontendEditable %> style="position: relative;"<% end_if %>>
+<div id="block-$ID" class="block block-{$Type2Class} group<% if $frontendEditable %> edit-mode<% end_if %>">
 	<% if not $hideTitle %>
 		<% if $TitleWrapper %>
 			<{$TitleWrapper} class="block-title"><span>$Title</span></{$TitleWrapper}>
@@ -8,8 +8,8 @@
 	<% end_if %>
 	$Layout
 	<% if $frontendEditable %>
-	<div style="position: absolute; top: 0; right: 0;">
-		<a href="/admin/blocks/Block/EditForm/field/Block/item/{$ID}/edit" target="_blank">Edit</a>
+	<div class="frontend-block-edit-wrapper" style="position: absolute; top: 0; right: 0;">
+		<a class="block-edit-button" href="/admin/blocks/Block/EditForm/field/Block/item/{$ID}/edit" target="_blank">Edit</a>
 	</div>
 	<% end_if %>
 </div>

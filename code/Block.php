@@ -28,13 +28,25 @@ class Block extends DataObject {
 		'BlockType',
 		'Title', 
 		'Description',
-		'shownOn'
+		'shownOn',
+		'VisibleTo'
 	);
 	
 	protected static $field_labels = array(
 		'BlockType'			=>	'Block type',
-		'shownOn'			=>	'is shown on'
+		'shownOn'			=>	'is shown on',
+		'VisibleTo'			=>	'Visible to'
 	);
+	
+	public function VisibleTo() {
+		if (strlen(trim($this->MemberVisibility)) > 0) {
+			$lists = 'Group: ' . str_replace(',','<br />Group: ', $this->MemberVisibility);
+		}else{
+			$lists = '<em>&lt;All&gt;</em>';
+		}
+		
+		return new LiteralField('VisibleTo',$lists);
+	}
 	
 	public function BlockType() {
 		return $this->singular_name();
@@ -48,7 +60,11 @@ class Block extends DataObject {
 				$lists = '<em>&lt;not assigned&gt;</em>';
 			}
 		}else{
-			$lists = 'Page: ' . implode('<br />Page: ', $this->Pages()->column('Title'));
+			if ($this->Pages()->count() > 0) {
+				$lists = 'Page: ' . implode('<br />Page: ', $this->Pages()->column('Title'));
+			}else{
+				$lists = '<em>&lt;not assigned&gt;</em>';
+			}
 		}
 		return new LiteralField('shownOn',$lists);
 	}
