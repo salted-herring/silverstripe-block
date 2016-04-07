@@ -32,8 +32,12 @@ class BlockinPage extends Extension {
 				$multiClass = new GridFieldAddNewMultiClass(),
 				$sortable = new GridFieldOrderableRows('SortOrder')
 			);
-			$subBlocks = ClassInfo::subclassesFor('Block') || array();
-			unset($subBlocks['Block']);
+			$subBlocks = ClassInfo::subclassesFor('Block');
+			if (is_null($subBlocks)) {
+				$subBlocks = array('Block');
+			}else{
+				unset($subBlocks['Block']);
+			}
 			$multiClass->setClasses($subBlocks);
 		}
 		$grid->setConfig($config);
