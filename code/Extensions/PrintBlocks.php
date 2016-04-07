@@ -1,10 +1,5 @@
 <?php
 class PrintBlocks extends Extension {
-	public function init() {
-		Debugger::inspect('here');
-		parent::init();
-		Requirements::css(BLOCK_DIR.'/css/blocks.css');
-	}
 	
 	public function getAllBlocks() {
 		$blocks = new ArrayList();
