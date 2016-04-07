@@ -52,7 +52,6 @@ class Block extends DataObject {
 		return new LiteralField('shownOn',$lists);
 	}
 	
-	
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
 		$fields->removeFieldFromTab('Root', 'Pages');

@@ -24,7 +24,7 @@
 				->addComponents(
 					new GridFieldPaginatorWithShowAll(30),
 					$multiClass = new GridFieldAddNewMultiClass(),
-					$sortable = new GridFieldSortableRows('SortOrder')
+					$sortable = new GridFieldOrderableRows('SortOrder')
 				);
 			
 			$subBlocks = ClassInfo::subclassesFor('Block');

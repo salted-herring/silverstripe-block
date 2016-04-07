@@ -8,12 +8,6 @@ class BlockinPage extends Extension {
 		$ancestry = ClassInfo::ancestry($this->owner->ClassName);
 		if (!in_array('RedirectorPage', $ancestry) && !in_array('VirtualPage', $ancestry)) {
 			$blocks = $this->owner->Blocks();
-			if ($blocks->count() > 0) {
-				$blocks = Block::get()->filter(array(
-					'ID'				=>	$blocks->column('ID'),
-					'showBlockbyClass'	=>	false
-				))->sort('SortOrder','ASC');
-			}
 			$blocks_grid = $this->gridBuilder('Blocks', $blocks, '', true,'GridFieldConfig_RelationEditor');
 			$docked_grid = $this->gridBuilder('DockedBlocks', $this->dockedBlocks(), '');
 			
@@ -36,7 +30,7 @@ class BlockinPage extends Extension {
 		if ( $canAdd ) {
 			$config->addComponents(
 				$multiClass = new GridFieldAddNewMultiClass(),
-				$sortable = new GridFieldSortableRows('SortOrder')
+				$sortable = new GridFieldOrderableRows('SortOrder')
 			);
 			$subBlocks = ClassInfo::subclassesFor('Block');
 			unset($subBlocks['Block']);

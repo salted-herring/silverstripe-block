@@ -15,6 +15,7 @@
 	"require": {
 		"silverstripe/framework": "~3.3",
 		"silverstripe/cms": "~3.3",
-		"salted-herring/silverstripe-standard-permissions": "^1.0"
+		"salted-herring/silverstripe-standard-permissions": "^1.0",
+		"silverstripe-australia/gridfieldextensions": "~1.1.0"
 	}
 }
