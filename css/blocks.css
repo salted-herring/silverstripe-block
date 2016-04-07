@@ -42,6 +42,11 @@
 	margin-right: 10px;
 }
 
+.block-content .mid-col {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
 .block-content .right-col {
 	margin-left: 10px;
 }
@@ -51,6 +56,6 @@
 }
 
 .block-tri-column-block .block-content .col {
-	width: calc((100% - 20px) / 3);
+	width: calc((100% - 40px) / 3);
 }
 
