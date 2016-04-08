@@ -2,7 +2,6 @@
 	"name": "salted-herring/silverstripe-block",
 	"description": "Combining Silverstripe's awesomeness and Drupal's block feature",
 	"type": "silverstripe-module",
-
 	"homepage": "https://github.com/salted-herring/silverstripe-block",
 	"license": "MIT",
 	"keywords": ["silverstripe", "block"],
