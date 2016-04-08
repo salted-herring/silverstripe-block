@@ -123,12 +123,18 @@ class Block extends DataObject {
 			$availablePages
 		);
 		
-		$fields->addFieldsToTab('Root.VisibilitySettings', array(
-			$filterSelector,
-			$pageSelector,
-			$inClass,
-			$memberVisibility
-		));
+		
+		if ($this->canConfigPageAndType(Member::currentUser())) {
+			$fields->addFieldsToTab('Root.VisibilitySettings', array(
+				$filterSelector,
+				$pageSelector,
+				$inClass
+			));
+		}
+		
+		if ($this->canConfigMemberVisibility(Member::currentUser())) {
+			$fields->addFieldToTab('Root.VisibilitySettings', $memberVisibility);
+		}
 		return $fields;
 	}
 	

@@ -2,7 +2,8 @@
 Name: 'blockextensions'
 ---
 Block:
-#  extensions:
+  extensions:
+    - CustomBlockPermission
 #    - Versioned("Stage","Live")
 Page:
   extensions:
