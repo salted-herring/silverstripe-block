@@ -23,7 +23,7 @@
 				->removeComponentsByType('GridFieldExportButton')
 				->addComponents(
 					new GridFieldPaginatorWithShowAll(30),
-					$multiClass = new GridFieldAddNewMultiClass(),
+					$multiClass = new MultiClassSelector(),
 					$sortable = new GridFieldOrderableRows('SortOrder')
 				);
 			
