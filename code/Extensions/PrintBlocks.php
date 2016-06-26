@@ -9,7 +9,7 @@ class PrintBlocks extends Extension {
 	}
 		
 	public function getMyBlocks() {
-		return $this->owner->Blocks()->sort('SortOrder', 'ASC');
+		return $this->owner->Blocks()->sort(array('SortOrder' => 'ASC', 'ID' => 'ASC'));
 	}
 	
 	public function getDockedBlocks() {

@@ -9,6 +9,16 @@
 					$('#shownInClass').show();
 					$('#Pages').hide();
 				}
+				
+				var backlink = $('.backlink').attr('href');
+					backlinks = backlink.split('/');
+				if (backlinks[1] == 'pages') {
+					var pid = backlinks[backlinks.length-1],
+						cb = $('ul[name="Pages"] input.checkbox[value="'+pid+'"]');
+					cb.prop('disabled', true);
+					cb.parent().attr('title', 'You cannot remove block from the current working page. Please try to use Blocks list, or a different page');
+				}
+				
 			},
 			onchange: function(e) {
 				if ($(this).val() == 0) {

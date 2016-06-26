@@ -9,7 +9,13 @@ class Block extends DataObject {
 		'showBlockbyClass'	=>	'Boolean',
 		'Description'		=>	'Varchar(128)',
 		'MemberVisibility'	=>	'Varchar(255)',
-		'shownInClass'		=>	'Text'
+		'shownInClass'		=>	'Text',
+		'WrapperClasses'	=>	'Varchar(255)',
+		'HeadingClasses'	=>	'Varchar(255)',
+		'addMarginTop'		=>	'Boolean',
+		'addMarginBottom'	=>	'Boolean',
+		'addPaddingTop'		=>	'Boolean',
+		'addPaddingBottom'	=>	'Boolean'
 	);
 	
 	protected static $many_many = array (
@@ -120,7 +126,7 @@ class Block extends DataObject {
 		$pageSelector = new CheckboxSetField(
 			$name = "Pages",
 			$title = "Show on Page(s)",
-			$availablePages
+			$availablePages->map('ID','Title')
 		);
 		
 		
@@ -135,6 +141,20 @@ class Block extends DataObject {
 		if ($this->canConfigMemberVisibility(Member::currentUser())) {
 			$fields->addFieldToTab('Root.VisibilitySettings', $memberVisibility);
 		}
+
+		if (!$fields->fieldByName('Options')) {
+				$fields->insertBefore($right = RightSidebar::create('Options'), 'Root');
+		}
+
+		$fields->addFieldsToTab('Options', array(
+			TextField::create('WrapperClasses', 'Additional block wrapper Class'),
+			TextField::create('HeadingClasses', 'Additional block title Class'),
+			CheckboxField::create('addMarginTop','Add Margin to top'),
+			CheckboxField::create('addMarginBottom','Add Margin to bottom'),
+			CheckboxField::create('addPaddingTop','Add Padding to top'),
+			CheckboxField::create('addPaddingBottom','Add Padding to bottom')
+		));
+
 		return $fields;
 	}
 	
