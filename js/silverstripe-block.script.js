@@ -14,7 +14,7 @@
 					backlinks = backlink.split('/');
 				if (backlinks[1] == 'pages') {
 					var pid = backlinks[backlinks.length-1],
-						cb = $('ul[name="Pages"] input.checkbox[value="'+pid+'"]');
+						cb = $('ul[name="Pages"] input.checkbox[value="'+pid+'"]').length > 0 ? $('ul[name="Pages"] input.checkbox[value="'+pid+'"]') : $('#Pages input.checkbox[value="'+pid+'"]');
 					cb.prop('disabled', true);
 					cb.parent().attr('title', 'You cannot remove block from the current working page. Please try to use Blocks list, or a different page');
 				}
