@@ -16,7 +16,8 @@ class Block extends DataObject {
 		'addMarginBottom'	=>	'Boolean',
 		'addPaddingTop'		=>	'Boolean',
 		'addPaddingBottom'	=>	'Boolean',
-		'SectionWrapper'	=>	'Boolean'
+		'SectionWrapper'	=>	'Boolean',
+		'UseOwnTemplate'	=>	'Boolean'
 	);
 	
 	protected static $many_many = array (
@@ -154,7 +155,8 @@ class Block extends DataObject {
 			CheckboxField::create('addMarginBottom','Add Margin to bottom'),
 			CheckboxField::create('addPaddingTop','Add Padding to top'),
 			CheckboxField::create('addPaddingBottom','Add Padding to bottom'),
-			CheckboxField::create('SectionWrapper', 'Use &lt;section /&gt; as block wrapper')
+			CheckboxField::create('SectionWrapper', 'Use &lt;section /&gt; as block wrapper'),
+			CheckboxField::create('UseOwnTemplate', 'Checking this box will make your block start from $Layout.'),
 		));
 
 		return $fields;
