@@ -9,16 +9,10 @@ class Block extends DataObject {
 		'showBlockbyClass'	=>	'Boolean',
 		'Description'		=>	'Varchar(128)',
 		'MemberVisibility'	=>	'Varchar(255)',
-		'shownInClass'		=>	'Text',
-		'WrapperClasses'	=>	'Varchar(255)',
-		'HeadingClasses'	=>	'Varchar(255)',
-		'addMarginTop'		=>	'Boolean',
-		'addMarginBottom'	=>	'Boolean',
-		'addPaddingTop'		=>	'Boolean',
-		'addPaddingBottom'	=>	'Boolean',
-		'SectionWrapper'	=>	'Boolean',
-		'UseOwnTemplate'	=>	'Boolean'
+		'shownInClass'		=>	'Text'
 	);
+	
+	protected static $use_own_template = false;
 	
 	protected static $many_many = array (
 		'Pages'				=>	'Page'
@@ -144,21 +138,6 @@ class Block extends DataObject {
 			$fields->addFieldToTab('Root.VisibilitySettings', $memberVisibility);
 		}
 
-		if (!$fields->fieldByName('Options')) {
-				$fields->insertBefore($right = RightSidebar::create('Options'), 'Root');
-		}
-
-		$fields->addFieldsToTab('Options', array(
-			TextField::create('WrapperClasses', 'Additional block wrapper Class'),
-			TextField::create('HeadingClasses', 'Additional block title Class'),
-			CheckboxField::create('addMarginTop','Add Margin to top'),
-			CheckboxField::create('addMarginBottom','Add Margin to bottom'),
-			CheckboxField::create('addPaddingTop','Add Padding to top'),
-			CheckboxField::create('addPaddingBottom','Add Padding to bottom'),
-			CheckboxField::create('SectionWrapper', 'Use &lt;section /&gt; as block wrapper'),
-			CheckboxField::create('UseOwnTemplate', 'Checking this box will make your block start from $Layout.')
-		));
-
 		return $fields;
 	}
 	
@@ -173,6 +152,9 @@ class Block extends DataObject {
 	
 	public function forTemplate() {
 		if ($this->canDisplayMemberCheck()) {
+			if (self::$use_own_template) {
+				return $this->renderWith(array($this->getClassName()));
+			}
 			return $this->renderWith(array($this->getClassName(), 'BaseBlock'));
 		}
 		
