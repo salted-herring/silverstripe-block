@@ -1,4 +1,5 @@
 <div id="block-$ID" class="block block-{$Type2Class}<% if $frontendEditable %> edit-mode<% end_if %>">
+dfads
 	<% if not $hideTitle %>
 		<% if $TitleWrapper %>
 			<{$TitleWrapper} class="block-title"><span>$Title</span></{$TitleWrapper}>

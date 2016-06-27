@@ -141,7 +141,7 @@ class Block extends DataObject {
 		return $fields;
 	}
 	
-	private function availableClasses() {
+	protected function availableClasses() {
 		$Classes = array_diff(
 			ClassInfo::subclassesFor('Page'),
 			ClassInfo::subclassesFor('RedirectorPage'),
@@ -161,7 +161,7 @@ class Block extends DataObject {
 		return false;
 	}
 	
-	private function canDisplayMemberCheck() {
+	public function canDisplayMemberCheck() {
 		$rawVisibility = $this->MemberVisibility;
 		
 		if (empty($rawVisibility)) {
