@@ -156,7 +156,7 @@ class Block extends DataObject {
 			CheckboxField::create('addPaddingTop','Add Padding to top'),
 			CheckboxField::create('addPaddingBottom','Add Padding to bottom'),
 			CheckboxField::create('SectionWrapper', 'Use &lt;section /&gt; as block wrapper'),
-			CheckboxField::create('UseOwnTemplate', 'Checking this box will make your block start from $Layout.'),
+			CheckboxField::create('UseOwnTemplate', 'Checking this box will make your block start from $Layout.')
 		));
 
 		return $fields;
