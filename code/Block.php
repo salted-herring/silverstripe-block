@@ -12,8 +12,6 @@ class Block extends DataObject {
 		'shownInClass'		=>	'Text'
 	);
 	
-	protected static $use_own_template = false;
-	
 	protected static $many_many = array (
 		'Pages'				=>	'Page'
 	);
@@ -141,7 +139,7 @@ class Block extends DataObject {
 		return $fields;
 	}
 	
-	protected function availableClasses() {
+	public function availableClasses() {
 		$Classes = array_diff(
 			ClassInfo::subclassesFor('Page'),
 			ClassInfo::subclassesFor('RedirectorPage'),
@@ -152,9 +150,6 @@ class Block extends DataObject {
 	
 	public function forTemplate() {
 		if ($this->canDisplayMemberCheck()) {
-			if (self::$use_own_template) {
-				return $this->renderWith(array($this->getClassName()));
-			}
 			return $this->renderWith(array($this->getClassName(), 'BaseBlock'));
 		}
 		
