@@ -9,7 +9,9 @@ class Block extends DataObject {
 		'showBlockbyClass'	=>	'Boolean',
 		'Description'		=>	'Varchar(128)',
 		'MemberVisibility'	=>	'Varchar(255)',
-		'shownInClass'		=>	'Text'
+		'shownInClass'		=>	'Text',
+		'addMarginTop'		=>	'Boolean',
+		'addMarginBottom'	=>	'Boolean'
 	);
 	
 	protected static $many_many = array (
@@ -135,6 +137,15 @@ class Block extends DataObject {
 		if ($this->canConfigMemberVisibility(Member::currentUser())) {
 			$fields->addFieldToTab('Root.VisibilitySettings', $memberVisibility);
 		}
+		
+		if (!$fields->fieldByName('Options')) {
+			$fields->insertBefore($right = RightSidebar::create('Options'), 'Root');
+	    }
+	
+	    $fields->addFieldsToTab('Options', array(
+			CheckboxField::create('addMarginTop', 'add "margin-top" class to block wrapper'),
+			CheckboxField::create('addMarginBottom', 'add "margin-bottom" class to block wrapper')
+	    ));
 
 		return $fields;
 	}

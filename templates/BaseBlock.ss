@@ -1,5 +1,4 @@
-<div id="block-$ID" class="block block-{$Type2Class}<% if $frontendEditable %> edit-mode<% end_if %>">
-dfads
+<div id="block-$ID" class="block block-{$Type2Class}<% if $addMarginTop %> margin-top<% end_if %><% if $addMarginBottom %> margin-bottom<% end_if %><% if $frontendEditable %> edit-mode<% end_if %>">
 	<% if not $hideTitle %>
 		<% if $TitleWrapper %>
 			<{$TitleWrapper} class="block-title"><span>$Title</span></{$TitleWrapper}>
