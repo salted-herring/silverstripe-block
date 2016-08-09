@@ -1,4 +1,5 @@
 <?php
+
 class BlockinPage extends Extension {
 	protected static $belongs_many_many = array (
 		'Blocks'			=>	'Block'
@@ -32,16 +33,7 @@ class BlockinPage extends Extension {
 				$multiClass = new MultiClassSelector(),
 				$sortable = new GridFieldOrderableRows('SortOrder')
 			);
-			$subBlocks = ClassInfo::subclassesFor('Block');
-			if (is_null($subBlocks)) {
-				$subBlocks = array('Block');
-			}else{
-				unset($subBlocks['Block']);
-				
-				foreach ($subBlocks as $key => &$value) {
-					$value = empty($key::$singular_name) ? ucwords(trim(strtolower(preg_replace('/_?([A-Z])/', ' $1', $value)))) : $key::$singular_name;
-				}
-			}
+			$subBlocks = BlocksAdmin::getAvaiableTypes();
 			$multiClass->setClasses($subBlocks);
 		}
 		$grid->setConfig($config);

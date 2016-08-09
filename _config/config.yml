@@ -1,7 +1,13 @@
 ---
-Name: 'blockextensions'
+Name: blockextensions
+After: 'framework/*','cms/*'
 ---
 Block:
+  DisabledBlocks:
+    - Block
+#    - DualColumnBlock
+#    - SingleColumnBlock
+#    - TriColumnBlock
   extensions:
     - CustomBlockPermission
 #    - Versioned("Stage","Live")
