@@ -32,6 +32,9 @@
 				$subBlocks = array('Block');
 			}else{
 				unset($subBlocks['Block']);
+				foreach ($subBlocks as $key => &$value) {
+					$value = empty($key::$singular_name) ? ucwords(trim(strtolower(preg_replace('/_?([A-Z])/', ' $1', $value)))) : $key::$singular_name;
+				}
 			}
 			
 			$multiClass->setClasses($subBlocks);
