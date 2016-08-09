@@ -40,7 +40,6 @@ class BlocksAdmin extends ModelAdmin {
 			$subBlocks = array('Block');
 		}else{
 			$disabledTypes = Config::inst()->get('Block','DisabledBlocks');
-			Debugger::inspect($disabledTypes);
 			if (!empty($disabledTypes)) {
 				foreach ($disabledTypes as $disabledType) {
 					unset($subBlocks[$disabledType]);
