@@ -17,6 +17,11 @@ class Block extends DataObject {
 	protected static $many_many = array (
 		'Pages'				=>	'Page'
 	);
+	
+	protected static $default_sort = array(
+		'SortOrder'			=>	'ASC',
+		'ID'				=>	'DESC'
+	);
 		
 	protected static $create_table_options = array(
 		'MySQLDatabase'		=> 'ENGINE=MyISAM'
