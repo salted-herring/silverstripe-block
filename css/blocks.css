@@ -59,3 +59,14 @@
 	width: calc((100% - 40px) / 3);
 }
 
+.cms-content-tools.rightsidebar {
+	position: fixed;
+	top: 52px;
+	right: 1px;
+	height: calc(100% - 105px);
+	z-index: 50;
+}
+
+.cms-content-tools.rightsidebar.open {
+	
+}

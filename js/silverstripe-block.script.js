@@ -1,5 +1,6 @@
 (function($){
 	$.entwine('ss', function($) {
+		var _interval	=	null;
 		$('input[name="showBlockbyClass"]').entwine({
 			onmatch: function(e) {
 				if ($('input[name="showBlockbyClass"]:checked').val() == 0) {
@@ -28,6 +29,36 @@
 					$('#shownInClass').show();
 					$('#Pages').hide();
 				}
+			}
+		});
+		
+		$('.rightsidebar').entwine({
+			MinInnerWidth: 620,
+			onmatch: function() {
+				_interval = setInterval(function() {
+					if ( $('.cms-content-fields').width() != $('#Form_ItemEditForm').width() - $('.rightsidebar').outerWidth()) {
+						$('.cms-content-fields').width($('#Form_ItemEditForm').width() - $('.rightsidebar').outerWidth());
+					} else if (_interval) {
+						clearInterval(_interval);
+						_interval = null;
+					}
+				}, 100);
+				$(window).resize(function(e) {
+                    $('.cms-content-fields').width($('#Form_ItemEditForm').width() - $('.rightsidebar').outerWidth());
+                });
+			},
+			onadd: function() {
+				if(this.parent('fieldset').length){
+					this._super();
+				}
+				this.updateLayout();
+			},
+			togglePanel: function(bool, silent) {
+				this._super(bool, silent);
+				this.updateLayout();
+			},
+			updateLayout: function() {
+				$('.cms-content-fields').width($('#Form_ItemEditForm').width() - $('.rightsidebar').outerWidth());
 			}
 		});
 	});
