@@ -9,11 +9,19 @@ class PrintBlocks extends Extension {
 	}
 		
 	public function getMyBlocks() {
-		return $this->owner->Blocks()->sort(array('SortOrder' => 'ASC', 'ID' => 'ASC'));
+		$blocks = $this->owner->Blocks()->sort(array('SortOrder' => 'ASC', 'ID' => 'DESC'));
+		$published_blocks = new ArrayList();
+		foreach ($blocks as $block) {
+			if ($block->isPublished()) {
+				$published_blocks->push($block);
+			}
+		}
+		
+		return $published_blocks;
 	}
 	
 	public function getDockedBlocks() {
-		$blocks = Block::get()->filter('showBlockbyClass', true);
+		$blocks = Block::get()->filter(array('showBlockbyClass' => true));
 		$blocks_map = $blocks->map('ID', 'shownInClass');
 		foreach ($blocks_map as $blockID => $Classes) {
 			$Classes = explode(',', $Classes);
@@ -21,7 +29,13 @@ class PrintBlocks extends Extension {
 				$blocks = $blocks->exclude('ID', $blockID);
 			}
 		}
+		$published_blocks = new ArrayList();
+		foreach ($blocks as $block) {
+			if ($block->isPublished()) {
+				$published_blocks->push($block);
+			}
+		}
 		
-		return $blocks->sort('SortOrder', 'ASC');
+		return $published_blocks->sort('SortOrder', 'ASC');
 	}
 }
