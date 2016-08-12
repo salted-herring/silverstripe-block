@@ -9,8 +9,8 @@ Block:
 #    - SingleColumnBlock
 #    - TriColumnBlock
   extensions:
+    - Versioned("Stage","Live")
     - CustomBlockPermission
-#    - Versioned("Stage","Live")
 Page:
   extensions:
     - BlockinPage

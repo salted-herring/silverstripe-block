@@ -1,4 +1,4 @@
-<?php
+<?php use SaltedHerring\Debugger as Debugger;
 /**
  * @file BlocksAdmin.php
  *
@@ -16,13 +16,14 @@ class BlocksAdmin extends ModelAdmin {
 		
 		$grid = $form->Fields()->fieldByName($this->sanitiseClassName($this->modelClass));
 		
-		
 		$grid->getConfig()
 			->removeComponentsByType('GridFieldPaginator')
 			->removeComponentsByType('GridFieldAddNewButton')
 			->removeComponentsByType('GridFieldPrintButton')
 			->removeComponentsByType('GridFieldExportButton')
+			->removeComponentsByType('GridFieldDetailForm')
 			->addComponents(
+				new VersionedForm(),
 				new GridFieldPaginatorWithShowAll(30),
 				$multiClass = new MultiClassSelector(),
 				$sortable = new GridFieldOrderableRows('SortOrder')
@@ -33,6 +34,12 @@ class BlocksAdmin extends ModelAdmin {
 		$grid->setTitle('All Blcoks');
 		return $form;
 	}
+	
+	public function getList() {
+		$list = Versioned::get_by_stage('Block', 'Stage');
+		
+		return $list;
+    }
 	
 	public static function getAvaiableTypes() {
 		$subBlocks = ClassInfo::subclassesFor('Block');
@@ -52,4 +59,6 @@ class BlocksAdmin extends ModelAdmin {
 		
 		return $subBlocks;
 	}
+	
+	
 }
