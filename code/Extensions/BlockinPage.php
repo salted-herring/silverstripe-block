@@ -29,7 +29,12 @@ class BlockinPage extends Extension {
 		$config = $gridHeaderType::create();
 		$config->removeComponentsByType('GridFieldAddNewButton');
 		if ( $canAdd ) {
-			$config->addComponents(
+			$config
+			->removeComponentsByType('GridFieldPaginator')
+			->removeComponentsByType('GridFieldDetailForm')
+			->addComponents(
+				new VersionedForm(),
+				new GridFieldPaginatorWithShowAll(30),
 				$multiClass = new MultiClassSelector(),
 				$sortable = new GridFieldOrderableRows('SortOrder')
 			);

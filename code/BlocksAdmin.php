@@ -28,7 +28,7 @@ class BlocksAdmin extends ModelAdmin {
 				$multiClass = new MultiClassSelector(),
 				$sortable = new GridFieldOrderableRows('SortOrder')
 			);
-			
+					
 		$subBlocks = self::getAvaiableTypes();
 		$multiClass->setClasses($subBlocks);
 		$grid->setTitle('All Blcoks');
