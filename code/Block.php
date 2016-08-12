@@ -89,7 +89,7 @@ class Block extends DataObject {
 			'MemberVisibility'
 		));
 		
-		$fields->addFieldToTab('Root.Main', LiteralField::create('Status', 'Status: ' . $this->Published()), 'Title');
+		$fields->addFieldToTab('Root.Main', LiteralField::create('Status', 'Published: ' . $this->Published()), 'Title');
 		
 		$memberGroups = Group::get();
 		$sourcemap = $memberGroups->map('Code', 'Title');
