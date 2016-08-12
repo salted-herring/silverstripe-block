@@ -1,5 +1,7 @@
 <?php
 
+use SaltedHerring\Debugger as Debugger;
+
 class Block extends DataObject {
 	protected static $db = array (
 		'SortOrder'			=>	'Int',
@@ -20,7 +22,7 @@ class Block extends DataObject {
 	
 	protected static $default_sort = array(
 		'SortOrder'			=>	'ASC',
-		'ID'				=>	'DESC'
+		'ID'					=>	'DESC'
 	);
 		
 	protected static $create_table_options = array(
@@ -36,7 +38,8 @@ class Block extends DataObject {
 		'Title', 
 		'Description',
 		'shownOn',
-		'VisibleTo'
+		'VisibleTo',
+		'Published'
 	);
 	
 	protected static $field_labels = array(
@@ -85,6 +88,8 @@ class Block extends DataObject {
 			'shownInClass',
 			'MemberVisibility'
 		));
+		
+		$fields->addFieldToTab('Root.Main', LiteralField::create('Status', 'Status: ' . $this->Published()), 'Title');
 		
 		$memberGroups = Group::get();
 		$sourcemap = $memberGroups->map('Code', 'Title');
@@ -155,6 +160,25 @@ class Block extends DataObject {
 		return $fields;
 	}
 	
+	public function doPublish() {
+		$this->writeToStage('Live');
+	}
+	
+	public function onBeforeWrite() {
+		parent::onBeforeWrite();
+		if (empty($this->byPass)) {
+			$this->readmode = Versioned::get_reading_mode();
+			Versioned::set_reading_mode('Stage.Stage');
+		}
+	}
+	
+	public function onAfterWrite() {
+		parent::onAfterWrite();
+		if (isset($this->readmode)) {
+			Versioned::set_reading_mode('Stage.' . $this->readmode);
+		}
+	}
+	
 	public function availableClasses() {
 		$Classes = array_diff(
 			ClassInfo::subclassesFor('Page'),
@@ -206,4 +230,21 @@ class Block extends DataObject {
 	public function Type2Class() {
 		return strtolower(str_replace(' ', '-', $this->singular_name()));
 	}
+	
+	/*public function doPublish() {
+		$this->writeToStage('Live');
+	}*/
+	
+	public function Published() {
+		return $this->isPublished() ? 'Yes' : 'No';
+	}
+	
+	public function isPublished() {
+		if (!empty(Versioned::get_by_stage('Block', 'Live')->byID($this->ID))) {
+			return true;
+		}
+		
+		return false;
+	}
+
 }
