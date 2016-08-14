@@ -3,6 +3,7 @@ Name: blockextensions
 After: 'framework/*','cms/*'
 ---
 Block:
+  FrontendEditable: true
   DisabledBlocks:
     - Block
 #    - DualColumnBlock
@@ -11,9 +12,9 @@ Block:
   extensions:
     - Versioned("Stage","Live")
     - CustomBlockPermission
-Page:
-  extensions:
-    - BlockinPage
-ContentController:
-  extensions:
-    - PrintBlocks
+#Page:
+#  extensions:
+#    - BlockinPage
+#ContentController:
+#  extensions:
+#    - PrintBlocks

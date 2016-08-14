@@ -36,7 +36,7 @@ class BlockinPage extends Extension {
 				new VersionedForm(),
 				new GridFieldPaginatorWithShowAll(30),
 				$multiClass = new MultiClassSelector(),
-				$sortable = new GridFieldOrderableRows('SortOrder')
+				$sortable = new OrderableBlocks('SortOrder')
 			);
 			$subBlocks = BlocksAdmin::getAvaiableTypes();
 			$multiClass->setClasses($subBlocks);
