@@ -1,7 +1,4 @@
 <?php
-
-use SaltedHerring\Debugger as Debugger;
-
 class Block extends DataObject {
 	protected static $db = array (
 		'SortOrder'			=>	'Int',
@@ -235,8 +232,8 @@ class Block extends DataObject {
 	}
 	
 	public function frontendEditable() {
-		$member = Member::currentUser();		
-		return $this->canEdit($member);
+		$member = Member::currentUser();
+		return $this->canEdit($member) && Config::inst()->get('Block', 'FrontendEditable');
 	}
 	
 	public function Type2Class() {

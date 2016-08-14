@@ -3,6 +3,7 @@ Name: blockextensions
 After: 'framework/*','cms/*'
 ---
 Block:
+  FrontendEditable: true
   DisabledBlocks:
     - Block
 #    - DualColumnBlock
