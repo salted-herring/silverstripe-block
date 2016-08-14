@@ -11,9 +11,9 @@ Block:
   extensions:
     - Versioned("Stage","Live")
     - CustomBlockPermission
-Page:
-  extensions:
-    - BlockinPage
-ContentController:
-  extensions:
-    - PrintBlocks
+#Page:
+#  extensions:
+#    - BlockinPage
+#ContentController:
+#  extensions:
+#    - PrintBlocks

@@ -13,7 +13,9 @@ class Block extends DataObject {
 		'MemberVisibility'	=>	'Varchar(255)',
 		'shownInClass'		=>	'Text',
 		'addMarginTop'		=>	'Boolean',
-		'addMarginBottom'	=>	'Boolean'
+		'addMarginBottom'	=>	'Boolean',
+		'addPaddingTop'		=>	'Boolean',
+		'addPaddingBottom'	=>	'Boolean'
 	);
 	
 	protected static $many_many = array (
@@ -177,6 +179,16 @@ class Block extends DataObject {
 		if (isset($this->readmode)) {
 			Versioned::set_reading_mode('Stage.' . $this->readmode);
 		}
+		
+		/*if ($this->isPublished()) {
+			$live = Versioned::get_by_stage('Block', 'Live')->byID($this->ID);
+			$stage = Versioned::get_by_stage('Block', 'Stage')->byID($this->ID);
+			if ($live->SortOrder != $stage->SortOrder) {
+				
+				$this->byPass = true;
+				$this->doPublish();
+			}
+		}*/
 	}
 	
 	public function availableClasses() {
