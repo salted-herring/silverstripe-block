@@ -1,6 +1,6 @@
 <?php
 class Block extends DataObject {
-	protected static $db = array (
+	private static $db = array (
 		'SortOrder'			=>	'Int',
 		'Title'				=>	'Varchar(64)',
 		'TitleWrapper'		=>	'Enum("h2,h3,h4,h5,h6")',
@@ -15,24 +15,24 @@ class Block extends DataObject {
 		'addPaddingBottom'	=>	'Boolean'
 	);
 	
-	protected static $many_many = array (
+	private static $many_many = array (
 		'Pages'				=>	'Page'
 	);
 	
-	protected static $default_sort = array(
+	private static $default_sort = array(
 		'SortOrder'			=>	'ASC',
 		'ID'					=>	'DESC'
 	);
 		
-	protected static $create_table_options = array(
+	private static $create_table_options = array(
 		'MySQLDatabase'		=> 'ENGINE=MyISAM'
     );
 	
-	protected static $extensions = array (
+	private static $extensions = array (
 		'StandardPermissions'
 	);
 	
-	protected static $summary_fields = array(
+	private static $summary_fields = array(
 		'BlockType',
 		'Title', 
 		'Description',
@@ -41,7 +41,7 @@ class Block extends DataObject {
 		'Published'
 	);
 	
-	protected static $field_labels = array(
+	private static $field_labels = array(
 		'BlockType'			=>	'Block type',
 		'shownOn'			=>	'is shown on',
 		'VisibleTo'			=>	'Visible to'
