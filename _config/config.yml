@@ -9,6 +9,13 @@ Block:
 #    - DualColumnBlock
 #    - SingleColumnBlock
 #    - TriColumnBlock
+  Themes:
+    blackBlue:
+      title: "Black Blue"
+      css: "black-blue"
+    brown:
+      title: "Brown y'all"
+      css: "brown"
   extensions:
     - Versioned("Stage","Live")
     - CustomBlockPermission
