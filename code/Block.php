@@ -59,28 +59,23 @@ class Block extends DataObject
         return $fields;
     }
 
-    public function doPublish()
-    {
-        $this->writeToStage('Live');
-    }
-
-    public function onBeforeWrite()
-    {
-        parent::onBeforeWrite();
-
-        if (empty($this->byPass)) {
-            $this->readmode = Versioned::get_reading_mode();
-            Versioned::set_reading_mode('Stage.Stage');
-        }
-    }
-
-    public function onAfterWrite()
-    {
-        parent::onAfterWrite();
-        if (isset($this->readmode)) {
-            Versioned::set_reading_mode('Stage.' . $this->readmode);
-        }
-    }
+    // public function onBeforeWrite()
+    // {
+    //     parent::onBeforeWrite();
+    //
+    //     if (empty($this->byPass)) {
+    //         $this->readmode = Versioned::get_reading_mode();
+    //         Versioned::set_reading_mode('Stage.Stage');
+    //     }
+    // }
+    //
+    // public function onAfterWrite()
+    // {
+    //     parent::onAfterWrite();
+    //     if (isset($this->readmode)) {
+    //         Versioned::set_reading_mode('Stage.' . $this->readmode);
+    //     }
+    // }
 
     public function forTemplate()
     {
@@ -96,6 +91,11 @@ class Block extends DataObject
     public function Type2Class()
     {
         return strtolower(str_replace(' ', '-', $this->singular_name()));
+    }
+
+    public function doPublish()
+    {
+        $this->writeToStage('Live');
     }
 
     public function Published()
