@@ -59,23 +59,23 @@ class Block extends DataObject
         return $fields;
     }
 
-    // public function onBeforeWrite()
-    // {
-    //     parent::onBeforeWrite();
-    //
-    //     if (empty($this->byPass)) {
-    //         $this->readmode = Versioned::get_reading_mode();
-    //         Versioned::set_reading_mode('Stage.Stage');
-    //     }
-    // }
-    //
-    // public function onAfterWrite()
-    // {
-    //     parent::onAfterWrite();
-    //     if (isset($this->readmode)) {
-    //         Versioned::set_reading_mode('Stage.' . $this->readmode);
-    //     }
-    // }
+    public function onBeforeWrite()
+    {
+        parent::onBeforeWrite();
+
+        if (empty($this->byPass)) {
+            $this->readmode = Versioned::get_reading_mode();
+            Versioned::set_reading_mode('Stage.Stage');
+        }
+    }
+    
+    public function onAfterWrite()
+    {
+        parent::onAfterWrite();
+        if (isset($this->readmode)) {
+            Versioned::set_reading_mode('Stage.' . $this->readmode);
+        }
+    }
 
     public function forTemplate()
     {
