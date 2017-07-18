@@ -32,7 +32,7 @@
 			}
 		});
 		
-		$('.rightsidebar').entwine({
+		/* $('.rightsidebar').entwine({
 			MinInnerWidth: 620,
 			onmatch: function() {
 				_interval = setInterval(function() {
@@ -60,7 +60,7 @@
 			updateLayout: function() {
 				$('.cms-content-fields').width($('#Form_ItemEditForm').width() - $('.rightsidebar').outerWidth());
 			}
-		});
+		}); */
 	});
 
 }(jQuery));
