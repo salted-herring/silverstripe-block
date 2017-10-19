@@ -1,6 +1,11 @@
 <?php
 
 define('BLOCK_DIR',basename(dirname(__FILE__)));
-Requirements::block('rightsidebar/js/cms.js');
 LeftAndMain::require_javascript( BLOCK_DIR. '/js/silverstripe-block.script.js' );
-Requirements::css(BLOCK_DIR.'/css/blocks.css');
+$url        =   ltrim($_REQUEST['url'], '/');
+$segments   =   explode('/', $url);
+if (count($segments) > 0) {
+    if ($segments[0] == 'admin') {
+        Requirements::css(BLOCK_DIR.'/css/blocks.css');
+    }
+}

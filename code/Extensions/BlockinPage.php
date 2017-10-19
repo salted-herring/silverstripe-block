@@ -1,7 +1,7 @@
 <?php
 
 class BlockinPage extends Extension {
-	protected static $belongs_many_many = array (
+	private static $belongs_many_many = array (
 		'Blocks'			=>	'Block'
 	);
 	

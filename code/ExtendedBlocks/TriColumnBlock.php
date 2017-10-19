@@ -1,8 +1,8 @@
 <?php
 
 class TriColumnBlock extends Block {
-	protected static $singular_name = 'Triple-column Block';
-	protected static $db = array (
+	private static $singular_name = 'Triple-column Block';
+	private static $db = array (
 		'LeftColumn'		=>	'HTMLText',
 		'MiddleColumn'	=>	'HTMLText',
 		'RightColumn'	=>	'HTMLText'

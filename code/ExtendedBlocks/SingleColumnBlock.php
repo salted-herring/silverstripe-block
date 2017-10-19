@@ -1,8 +1,8 @@
 <?php
 
 class SingleColumnBlock extends Block {
-	protected static $singular_name = 'Single-column Block';
-	protected static $db = array (
+	private static $singular_name = 'Single-column Block';
+	private static $db = array (
 		'Content'	=>	'HTMLText'
 	);
 }
