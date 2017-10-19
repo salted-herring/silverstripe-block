@@ -37,7 +37,7 @@
             onmatch: function() {
                 var rightsidebar_width  =   $('.rightsidebar').length > 0 ? $('.rightsidebar').outerWidth() : 0;
                 _interval = setInterval(function() {
-                    if ( $('.cms-content-fields').width() != $('#Form_ItemEditForm').width() - rightsidebar_width)) {
+                    if ( $('.cms-content-fields').width() != $('#Form_ItemEditForm').width() - rightsidebar_width) {
                         $('.cms-content-fields').width($('#Form_ItemEditForm').width() - rightsidebar_width);
                     } else if (_interval) {
                         clearInterval(_interval);
